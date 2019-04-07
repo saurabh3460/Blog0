@@ -21,7 +21,10 @@ from App.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("hello/",hello),
-    path("home/",home),
-    path("post/",post)
+    path("post/",post,name="post"),
+    # path("delete/(?P<postId>[0-9]+)/$",deletePost)
+    path("delete/<slug:postId>",deletePost),
+    path("singlepost/<slug:postId>",singlePost),
+    path("edit/",singlePost),
 
 ]

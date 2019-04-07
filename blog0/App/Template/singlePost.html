@@ -8,18 +8,34 @@
 <body>
 
 <div class="m-5">
-        {%for post in posts %}
-        <div class="list-group mt-2">
-            <a href="#" class="list-group-item list-group-item-action active">
+
+    <div class="list-group mt-2">
+        <a href="#" class="list-group-item list-group-item-action active">
             <div class="d-flex w-100 justify-content-between">
               <h5 class="mb-1">{{post.title}}</h5>
-
             </div>
                 <p class="mb-1">{{post.body}}  {{post.id}}</p>
           </a>
-            <a class="btn btn-danger" role="button" >Delete</a>
-        </div>
-        {%endfor%}
+            <a class="btn btn-danger mt-1" href="/delete/{{post.id}}" role="button" >Delete</a>
+    </div>
+
+    <div class="form m-5">
+            <form action="/singlepost/{{post.id}}" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                <label for="title">Edit Post Title</label>
+                <input type="text" class="form-control" id="title" value="{{post.title}}" name="title" minlength="5" required>
+              </div>
+              <div class="form-group">
+                <label for="body">Edit Post Body</label>
+                  <textarea  class="form-control" id="body" name="body" minlength="10" required>{{post.body}}</textarea>
+              </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            <form>
+
+    </div>
+
+
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

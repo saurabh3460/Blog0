@@ -2,57 +2,53 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>My Blog</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+   <link href="https://fonts.googleapis.com/css?family=Merienda|Pacifico|Patrick+Hand" rel="stylesheet">
 </head>
 <body>
 
 <div class="navbar navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">MyBlog</a>
+    <a class="navbar-brand" href="#" style="font-family:'Pacifico', cursive;">&ltMy Blog /&gt</a>
 </div>
 
 <div class="container m-5">
     <div class="form m-5">
-                <form action="/post/" method="POST">
-        {% csrf_token %}
-        <div class="form-group">
-        <label for="title">Enter Post Title</label>
-        <input type="text" class="form-control" id="title" name="title" placeholder="Enter Post title">
-      </div>
-      <div class="form-group">
-        <label for="body">Enter Post Body</label>
-          <textarea  class="form-control" id="body" name="body" placeholder="Enter post"></textarea>
-      </div>
-        <button type="submit" class="btn btn-primary">Post</button>
-    <form>
+        <form action="/post/" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+            <label for="title">Enter Post Title</label>
+            <input type="text" class="form-control" id="title" name="title" minlength="5" placeholder="Enter Post title" required>
+          </div>
+          <div class="form-group">
+            <label for="body">Enter Post Body</label>
+              <textarea  class="form-control" id="body" name="body" minlength="" placeholder="Enter post" required></textarea>
+          </div>
+            <button type="submit" class="btn btn-primary">Post</button>
+        <form>
+
     </div>
 
     <div class="m-5">
-        <div class="list-group">
-          {%for post in posts%}
-
-            <a href="#" class="list-group-item list-group-item-action active">
+        {%for post in posts %}
+        <div class="list-group mt-2" style="border:2px solid #343a40; padding:5px; border-radius:5px;">
+            <a href="/singlepost/{{post.id}}" class="list-group-item list-group-item-action active">
             <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">{{post.title}}</h5>
-
+              <h5 class="mb-1" style="font-family: 'Patrick Hand', cursive; color:black;">{{post.title}}</h5>
             </div>
-                <p class="mb-1">{{post.body}}</p>
+                <p class="mb-1" style="font-family: 'Merienda', cursive;">{{post.body}}</p>
           </a>
-
-            {%endfor%}
+            <a class="btn btn-danger mt-1" href="/delete/{{post.id}}" role="button" >Delete</a>
         </div>
-
-
-
+        {%endfor%}
     </div>
 
 </div>
-
-
 
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
 </body>
 </html>
