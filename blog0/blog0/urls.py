@@ -19,12 +19,18 @@ from django.urls import path
 from App.views import *
 
 urlpatterns = [
+
     path('admin/', admin.site.urls),
     path("hello/",hello),
     path("post/",post,name="post"),
     # path("delete/(?P<postId>[0-9]+)/$",deletePost)
+    path('signup/', signup,name="signup"),
     path("delete/<slug:postId>",deletePost),
     path("singlepost/<slug:postId>",singlePost),
     path("edit/",singlePost),
+    path("userpost/",userPost),
+    path('logout/', Logout, name='logout'),
+    path('login/', login, name='login'),
 
 ]
+
